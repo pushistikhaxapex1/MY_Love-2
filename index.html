@@ -97,11 +97,14 @@ section{padding:100px 24px;position:relative}
 .divider::before{left:-14px}
 .divider::after{right:-14px}
 
-/* ============ ПОРТРЕТЫ ============ */
+/* ============ ПОРТРЕТЫ (3 колонки) ============ */
 .portraits{background:#fff}
 .portraits-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);
-  max-width:820px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(20px, 3vw, 44px);
+  max-width:1000px;
+  margin:0 auto;
 }
 .portrait{text-align:center}
 .portrait .frame{
@@ -111,7 +114,10 @@ section{padding:100px 24px;position:relative}
 .portrait .frame img{transition:transform 1.2s ease}
 .portrait:hover .frame img{transform:scale(1.05)}
 .portrait h3{font-size:1.9rem;margin-bottom:10px}
-.portrait p{color:var(--muted);font-size:.98rem;max-width:280px;margin:0 auto}
+.portrait p{
+  color:var(--muted);font-size:.98rem;
+  max-width:260px;margin:0 auto;
+}
 
 /* ============ ТАЙМЛАЙН ============ */
 .timeline{position:relative;max-width:860px;margin:0 auto}
@@ -277,7 +283,6 @@ section{padding:100px 24px;position:relative}
   transition:color .6s ease;
 }
 
-/* полоса прогресса */
 .plans .bar{
   grid-column:2 / 4;
   height:2px;
@@ -333,9 +338,20 @@ footer{
 @keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
 
 /* ============ МОБИЛЬНАЯ ============ */
+@media(max-width:900px){
+  .portraits-grid{
+    grid-template-columns:1fr 1fr;
+    max-width:640px;
+  }
+}
+
 @media(max-width:720px){
   section{padding:70px 20px}
-  .portraits-grid{grid-template-columns:1fr;gap:50px}
+  .portraits-grid{
+    grid-template-columns:1fr;
+    gap:50px;
+    max-width:380px;
+  }
   .timeline::before{left:14px}
   .tl-item{grid-template-columns:60px 1fr;gap:18px;margin-bottom:50px}
   .tl-item .dot{grid-column:1;margin:0}
@@ -367,6 +383,7 @@ footer{
      img/hero.jpg   — фон первого экрана (гориз., 1920×1280)
      img/him.jpg    — портрет Паши           (верт., 900×1200)
      img/her.jpg    — портрет Светы          (верт., 900×1200)
+     img/cat.jpg    — портрет кошки          (верт., 900×1200)
      img/p1.jpg     — свадьба                (верт., 900×1200)
      img/p2.jpg     — первое путешествие     (верт., 900×1200)
      img/p3.jpg     — свежее фото            (верт., 900×1200)
@@ -379,7 +396,6 @@ footer{
 
 <!-- ============ 1. HERO ============ -->
 <section class="hero">
-  <!-- ФОН ГЛАВНОГО ЭКРАНА — img/hero.jpg (горизонтальное фото вас двоих) -->
   <div class="hero-bg">
     <img src="img/hero.jpg" alt="Паша и Света">
   </div>
@@ -415,23 +431,30 @@ footer{
 <section class="portraits">
   <div class="wrap">
     <div class="narrow reveal" style="margin-bottom:60px">
-      <p class="eyebrow">Двое</p>
+      <p class="eyebrow">Наша семья</p>
       <h2 style="font-size:clamp(1.8rem,4vw,2.6rem)">Ты — это весь мир</h2>
     </div>
     <div class="portraits-grid">
 
-      <!-- ПОРТРЕТ ПАШИ — img/him.jpg (вертикальное фото Паши) -->
+      <!-- ПОРТРЕТ ПАШИ — img/him.jpg -->
       <div class="portrait reveal">
         <div class="frame"><img src="img/him.jpg" alt="Паша"></div>
         <h3>Паша</h3>
         <p>Тот, кто смешит, когда грустно и делает массаж</p>
       </div>
 
-      <!-- ПОРТРЕТ СВЕТЫ — img/her.jpg (вертикальное фото Светы) -->
+      <!-- ПОРТРЕТ СВЕТЫ — img/her.jpg -->
       <div class="portrait reveal">
         <div class="frame"><img src="img/her.jpg" alt="Света"></div>
         <h3>Света</h3>
         <p>Та, что превращает обычный день в праздник, а дом — в тепло.</p>
+      </div>
+
+      <!-- ПОРТРЕТ КОШКИ — img/cat.jpg -->
+      <div class="portrait reveal">
+        <div class="frame"><img src="img/cat.jpg" alt="Булочка с корицей"></div>
+        <h3>Булочка с корицей</h3>
+        <p>Тыгыдыка с великолепной техникой Кусь.</p>
       </div>
 
     </div>
@@ -448,7 +471,6 @@ footer{
 
     <div class="timeline">
 
-      <!-- ТАЙМЛАЙН 1 — img/p1.jpg (свадебное фото, вертикальное) -->
       <div class="tl-item reveal">
         <div class="photo"><img src="img/p1.jpg" alt="День свадьбы"></div>
         <div class="dot"></div>
@@ -459,7 +481,6 @@ footer{
         </div>
       </div>
 
-      <!-- ТАЙМЛАЙН 2 — img/p2.jpg (первое путешествие, вертикальное) -->
       <div class="tl-item reveal">
         <div class="photo"><img src="img/p2.jpg" alt="Первое путешествие"></div>
         <div class="dot"></div>
@@ -470,7 +491,6 @@ footer{
         </div>
       </div>
 
-      <!-- ТАЙМЛАЙН 3 — img/p3.jpg (свежее совместное фото, вертикальное) -->
       <div class="tl-item reveal">
         <div class="photo"><img src="img/p3.jpg" alt="Сегодня"></div>
         <div class="dot"></div>
@@ -497,7 +517,6 @@ footer{
 
   <div class="hscroll" id="hscroll">
     <div class="hscroll-track" id="hscrollTrack">
-      <!-- ГРУППА 1 -->
       <div class="hgroup" id="hgroup1">
         <figure class="h-item" data-index="0"><img src="img/g1.jpg" alt="Мгновение 1"></figure>
         <figure class="h-item" data-index="1"><img src="img/g2.jpg" alt="Мгновение 2"></figure>
@@ -505,7 +524,6 @@ footer{
         <figure class="h-item" data-index="3"><img src="img/g4.jpg" alt="Мгновение 4"></figure>
         <figure class="h-item" data-index="4"><img src="img/g5.jpg" alt="Мгновение 5"></figure>
       </div>
-      <!-- ГРУППА 2 (для бесшовного бесконечного цикла) -->
       <div class="hgroup" aria-hidden="true">
         <figure class="h-item" data-index="0"><img src="img/g1.jpg" alt="Мгновение 1"></figure>
         <figure class="h-item" data-index="1"><img src="img/g2.jpg" alt="Мгновение 2"></figure>
@@ -513,7 +531,6 @@ footer{
         <figure class="h-item" data-index="3"><img src="img/g4.jpg" alt="Мгновение 4"></figure>
         <figure class="h-item" data-index="4"><img src="img/g5.jpg" alt="Мгновение 5"></figure>
       </div>
-      <!-- ГРУППА 3 (для широких экранов) -->
       <div class="hgroup" aria-hidden="true">
         <figure class="h-item" data-index="0"><img src="img/g1.jpg" alt="Мгновение 1"></figure>
         <figure class="h-item" data-index="1"><img src="img/g2.jpg" alt="Мгновение 2"></figure>
@@ -521,7 +538,6 @@ footer{
         <figure class="h-item" data-index="3"><img src="img/g4.jpg" alt="Мгновение 4"></figure>
         <figure class="h-item" data-index="4"><img src="img/g5.jpg" alt="Мгновение 5"></figure>
       </div>
-      <!-- ГРУППА 4 (для сверхшироких экранов) -->
       <div class="hgroup" aria-hidden="true">
         <figure class="h-item" data-index="0"><img src="img/g1.jpg" alt="Мгновение 1"></figure>
         <figure class="h-item" data-index="1"><img src="img/g2.jpg" alt="Мгновение 2"></figure>
@@ -631,7 +647,7 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===================== БЕСКОНЕЧНЫЙ АВТОСКРОЛЛ ГАЛЕРЕИ «СОХРАНЁННОЕ ВРЕМЯ» ===================== */
+/* ===================== БЕСКОНЕЧНЫЙ АВТОСКРОЛЛ ГАЛЕРЕИ ===================== */
 (function(){
   const gallery = document.getElementById('gallerySection') || document.querySelector('.gallery');
   const scroller = document.getElementById('hscroll');
@@ -640,7 +656,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const progress = document.getElementById('hprogress');
   if(!scroller || !track || !group1) return;
 
-  const SPEED = 46; // пикселей в секунду для мягкого, плавного движения
+  const SPEED = 46;
   let rafId = null;
   let lastTime = null;
   let isVisible = false;
@@ -670,12 +686,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const dt = Math.min((now - lastTime) / 1000, 0.1);
     lastTime = now;
 
-    // Плавная прокрутка, пока блок на экране и нет активного удержания
     if(isVisible && !isHovered && !isDragging){
       currentX += SPEED * dt;
     }
 
-    // Бесшовный бесконечный цикл через смещение одной группы
     if(groupWidth > 0){
       currentX = ((currentX % groupWidth) + groupWidth) % groupWidth;
       track.style.transform = `translate3d(${-currentX}px, 0, 0)`;
@@ -705,7 +719,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     }
   }
 
-  // Запуск только когда блок «Сохраненное время» виден на экране
   const ioGallery = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -725,7 +738,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   ioGallery.observe(gallery || scroller);
 
-  // Пауза ТОЛЬКО при реальном наведении курсора мыши (не тач)
   scroller.addEventListener('pointerenter', e=>{
     if(e.pointerType === 'mouse'){
       isHovered = true;
@@ -737,7 +749,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     lastTime = null;
   });
 
-  // Защита от зависания при переключении окон/вкладок
   window.addEventListener('blur', ()=>{
     isHovered = false;
     isDragging = false;
@@ -745,7 +756,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     lastTime = null;
   });
 
-  // Перетаскивание мышью и пальцем через единый Pointer API
   scroller.addEventListener('pointerdown', e=>{
     if(e.pointerType === 'mouse' && e.button !== 0) return;
     isDragging = true;
@@ -782,7 +792,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   window.addEventListener('pointerup', endDrag);
   window.addEventListener('pointercancel', endDrag);
 
-  // Открытие любого фото в лайтбоксе (только если не было перетаскивания)
   document.querySelectorAll('.h-item').forEach(card=>{
     card.addEventListener('click', ()=>{
       if(movedDist > 8) return;
@@ -845,7 +854,7 @@ lb.addEventListener('touchend', e=>{
   if(Math.abs(dx) > 50) dx > 0 ? prevLb() : nextLb();
 });
 
-/* ===================== АНИМАЦИЯ ПРОЦЕНТОВ В БЛОКЕ «ЧТО ДАЛЬШЕ» ===================== */
+/* ===================== АНИМАЦИЯ ПРОЦЕНТОВ ===================== */
 (function(){
   const plans = document.getElementById('plans');
   if(!plans) return;
@@ -874,7 +883,6 @@ lb.addEventListener('touchend', e=>{
 
   ioPlans.observe(plans);
 })();
-
 </script>
 </body>
 </html>
